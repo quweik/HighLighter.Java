@@ -1,0 +1,7 @@
+[class=line]{
+    width: 100%;
+    display:inline-block;
+}
+[class=line]:hover {
+    background-color:#DDD;
+}

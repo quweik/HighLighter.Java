@@ -1,0 +1,7 @@
+code>span {
+    width: 100%;
+    display:inline-block;
+}
+code>span:hover {
+    background-color:#293739;
+}

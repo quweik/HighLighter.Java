@@ -30,6 +30,7 @@ java -jar cli.jar -sjava.java -ojava.html
 * molokai
 
 ###扩展性
+所有的配置方案储存在`/etc`目录下
 ####语言
 Highlighter.java的语言高亮方案储存在`*.lang`文件中.<br>
 对于每个lang文件, 每一行的语法是
@@ -55,14 +56,21 @@ type=\\b(int|double|short|long)\\b color=red
 高亮了代码中所有你指定的type, 颜色为红色, 你也可以通过`color=keywords`使type与关键字的颜色相同.
 另, 自定义变量的优先级低于内置变量.
 
+####配色
+Highlighter.java的语言配色方案储存在`*.css`文件中.<br>
+[什么是CSS?](http://www.w3school.com.cn/css/)
+在配色方案中, 一种变量的属性由与它同名的类选择器实现, 如果你对CSS的语法有一点点了解,
+那么更改配色是非常简单的事情.
+
 ###开发环境
 * Intellij IDEA 14.0.2 + JDK 1.8
 * 依赖[Apache Common CLI library](http://commons.apache.org/proper/commons-cli/)
 
+###效果
 ![](java_desert.png)
 ![](c_molokai.png)
 
 ###参与者:
 * LastAvengers
-* Mus
 * quweik
+* Mus

@@ -1,0 +1,15 @@
+code {
+    /* reset counter */
+    counter-reset: section;           
+}
+
+.line:before {
+    counter-increment: section; /* content + 1*/
+    content: " "counter(section); /* show linenumber */
+
+    /* align */
+    margin-right: 15px;
+    display: inline-block;
+    width: 15px;
+    text-align: right;
+}

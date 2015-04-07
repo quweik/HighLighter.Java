@@ -1,0 +1,4 @@
+lineComment=//
+blkComment=/\*|\*/
+macro=#
+keywords=char|short|int|unsigned|long|float|double|struct|union|void|enum|signed|const|volatile|typedef|auto|register|static|extern|break|case|continue|default|do|else|for|goto|if|return|switch|while|sizeof
