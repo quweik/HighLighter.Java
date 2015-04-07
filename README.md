@@ -3,14 +3,14 @@ Highlighter.Java
 一个简单的代码着色器, 支持命令行与图形界面操作.
 
 ###支持的参数
--h 显示帮助后退出
--l 为代码加上行号
--e 增强功能
--d 打印调试信息
--o [FILENAME] 输出文件
--s [FILENAME] 输入文件
--t [LANGUAGE] 指定代码类型
--c [THEME] 指定配色方案
+* -h 显示帮助后退出
+* -l 为代码加上行号
+* -e 增强功能
+* -d 打印调试信息
+* -o [FILENAME] 输出文件
+* -s [FILENAME] 输入文件
+* -t [LANGUAGE] 指定代码类型
+* -c [THEME] 指定配色方案
 
 ###使用
 ```
@@ -56,11 +56,11 @@ type=\\b(int|double|short|long)\\b color=red
 另, 自定义变量的优先级低于内置变量.
 
 ###开发环境
-* Intellij IDEA 14.0.2 
+* Intellij IDEA 14.0.2 + JDK 1.8
 * 依赖[Apache Common CLI library](http://commons.apache.org/proper/commons-cli/)
 
-![](img\java_desert.png)
-![](img\c_molokai.png)
+![](java_desert.png)
+![](c_molokai.png)
 
 ###参与者:
 * LastAvengers
