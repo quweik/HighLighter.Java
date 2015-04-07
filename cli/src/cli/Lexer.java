@@ -9,14 +9,12 @@ import java.util.regex.Pattern;
  * Author: IMonday;
  * Data: 2015/3/15.
  * Usage: Add HTML tags to given string
- * Detail: 这个模块获取
  */
 
 public class Lexer {
     private String srcStr;
     private Vector<Element> elementVector;
     private String outStr = "";
-    private int i = 0;
 
     public Lexer(String srcStr, Vector<Element> elementVector) {
         this.srcStr = srcStr;
@@ -26,10 +24,10 @@ public class Lexer {
     public String htmlen() {
         srcStr = srcStr.replaceAll("<", "&lt");
         srcStr = srcStr.replaceAll(">", "&gt");
-        i = 0;
         int mi = -1, en=0;
         for (Element e : elementVector) {
             Pattern pattern = Pattern.compile(e.pattern);
+            Utils.dbg(e.pattern);
             Matcher matcher = pattern.matcher(srcStr);
             if (matcher.find()) {
                 e.start = matcher.start();
@@ -55,7 +53,7 @@ public class Lexer {
                 if (e.start != mi) continue;
                 Pattern pattern = Pattern.compile(e.pattern);
                 Matcher matcher = pattern.matcher(srcStr);
-                boolean kk = matcher.find(e.start);
+                matcher.find(e.start);
                 Scanner scanner = new Scanner(matcher.group(0));
                 while (scanner.hasNextLine()) {
                /* 内置变量和自定义变量有不同的标记方法 */

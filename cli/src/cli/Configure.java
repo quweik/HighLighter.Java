@@ -75,6 +75,12 @@ public class Configure {
                 throw new Exception();
             }
 
+            /* 默认实现 */
+            number.pattern = "\\b\\d+\\b";
+            function.pattern = "\\b\\w+\\b(?=\\()";
+            string.pattern = "\".*?[^\\\\](\\\\\\\\)*\"";
+            character.pattern = "'.?'";
+
             FileInputStream fis = new FileInputStream(file);
             BufferedReader br = new BufferedReader(new InputStreamReader(fis, "UTF-8"));
             Scanner scanner = new Scanner(br);
@@ -97,7 +103,7 @@ public class Configure {
                 }
                 catch (NoSuchFieldException e){
                     isNew = true;
-                    Utils.err("NB: Not error, this exception is used create a non-existent object.");
+                    Utils.dbg("NB: Not error, this exception is used create a non-existent object.");
                     ins = cls.newInstance();
                     //if (Utils.debug) e.printStackTrace();
                 }
@@ -130,11 +136,6 @@ public class Configure {
             if(keywords.pattern != null) keywords.pattern = "\\b(" + keywords.pattern  + ")\\b";
             else keywords.pattern = "\\b233\\b";
 
-            /* 默认实现 */
-            number.pattern = "\\b\\d+\\b";
-            function.pattern = "\\b\\w+\\b(?=\\()";
-            string.pattern = "\".*?[^\\\\](\\\\\\\\)*\"";
-            character.pattern = "'.?'";
 
             Class<?> obj = Class.forName("cli.Configure");
             Field[] fields = obj.getDeclaredFields();

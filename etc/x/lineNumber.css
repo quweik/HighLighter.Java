@@ -8,8 +8,9 @@ code {
     content: " "counter(section); /* show linenumber */
 
     /* align */
-    margin-right: 15px;
+    width:2em;
+    padding-right: 1em;
+    margin-right: 1em;
     display: inline-block;
     width: 15px;
-    text-align: right;
 }

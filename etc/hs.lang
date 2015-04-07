@@ -1,0 +1,14 @@
+lineComment=--
+blkComment=\{-|-\}
+keywords=as|case|of|class|data|family|default|deriving|instance|do|forall|foreign|hiding|if|then|else|import|infix|infixl|infixr|let|in|mdo|module|newtype|proc|qualified|rec|type|where
+keyword2=::    color=macro
+keyword3=,     color=macro
+keyword6==     color=macro
+keyword7=&lt-   color=macro
+keyword13=-&gt  color=macro
+keyword8=\\    color=macro
+keyword11=@    color=macro
+keyword12=\|   color=macro
+keyword14=~    color=macro
+keyword15=\+    color=macro
+keyword15=\$    color=macro
