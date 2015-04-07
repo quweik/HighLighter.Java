@@ -26,6 +26,8 @@ import java.util.regex.MatchResult;
 class Element {
     String pattern;
     String type;
+    int start;
+    int end;
     /* 为了在Runtime 新建实例, 要保留一个无参构造函数 */
     public Element(){}
     public Element(String type) {
