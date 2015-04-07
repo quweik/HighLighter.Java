@@ -1,0 +1,35 @@
+.lineComment{
+    color:#757271;
+}
+.blkComment{
+    color:#757271;
+}
+.string {
+    color:#8BDA64;
+}
+.macro {
+    color:#C2BFEC;
+}
+.character{
+    color:#8BDA64;
+}
+.keywords{
+    color:#598DAA;
+}
+.line:before {
+    color:#757271;
+}
+.number{
+    color:#009299;
+}
+.function{
+    color:#E8F9B9;
+}
+code{
+    font: 14px/200% "Consolas";
+    display: block;
+    color: #D7CDBB;
+    padding: 10px;
+    border-radius: 2px;
+    background:none repeat scroll 0% 0% #000000;
+}

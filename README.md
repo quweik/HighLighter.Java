@@ -18,7 +18,6 @@ java -jar cli.jar -sjava.java -ojava.html
 ```
 
 ###支持的语言
-* ASM
 * C/C++
 * Java
 * Python
@@ -28,6 +27,9 @@ java -jar cli.jar -sjava.java -ojava.html
 * default
 * desert
 * molokai
+* GRB256
+* solarized_light
+* solarized_dark
 
 ###扩展性
 所有的配置方案储存在`/etc`目录下
@@ -53,12 +55,17 @@ Highlighter.java的语言高亮方案储存在`*.lang`文件中.<br>
 type=\\b(int|double|short|long)\\b color=red
 ```
 
-高亮了代码中所有你指定的type, 颜色为红色, 你也可以通过`color=keywords`使type与关键字的颜色相同.
+高亮了代码中所有你指定的type, 颜色为红色, 你也可以通过`color=keywords`使type与关键字的颜色相同, 甚至你可以覆盖内置变量.
+比如在`etc/python.lang`中: 
+将string的默认实现覆盖为
+`string='.*?[^\\](\\\\)*'`, 因为在python中是以单引号表示字符串的.
 另, 自定义变量的优先级低于内置变量.
 
 ####配色
-Highlighter.java的语言配色方案储存在`*.css`文件中.<br>
+Highlighter.java的语言配色方案储存在`*.css`文件中.
+
 [什么是CSS?](http://www.w3school.com.cn/css/)
+
 在配色方案中, 一种变量的属性由与它同名的类选择器实现, 如果你对CSS的语法有一点点了解,
 那么更改配色是非常简单的事情.
 
@@ -67,8 +74,16 @@ Highlighter.java的语言配色方案储存在`*.css`文件中.<br>
 * 依赖[Apache Common CLI library](http://commons.apache.org/proper/commons-cli/)
 
 ###效果
-![](java_desert.png)
-![](c_molokai.png)
+Langage: C ColorTheme: desert
+![](c_desert.png)
+Langage: Java ColorTheme: GRB256 
+![](java_GRB.png)
+Langage: C ColorTheme: solarized_light 
+![](c_s_l.png)
+Langage: python ColorTheme: solarized_dark 
+![](py_s_d.png)
+Langage: Haskell ColorTheme: molokai 
+![](hs_molokai.png)
 
 ###参与者:
 * LastAvengers
