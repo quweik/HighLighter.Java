@@ -11,14 +11,14 @@ import java.awt.event.ItemListener;
  */
 public class RightPane extends JPanel{
     private  JPanel optionPane = new JPanel();
-    private  JPanel buttonPane = new JPanel();
+    private  JPanel buttonPane ;
     private  JLabel type = new JLabel("Style");
     private  static JComboBox styleChoice ;
     private  JLabel theme = new JLabel("  Theme");
     private  JComboBox chooseTheme ;
     private  JCheckBox lineCheckBox = new JCheckBox("Show line number",false);
     private  JCheckBox hanceCheckBox = new JCheckBox("EnhanceMent",false);
-    private  JButton buttonExit = new JButton("Exit");
+    private  JButton buttonExit = new MakeButton("Exit");
     static  String syname = "Java";
     static String thename = "default";
     static boolean islinechecked = false;
@@ -26,7 +26,7 @@ public class RightPane extends JPanel{
     public RightPane(){
         GridBagLayout layout = new GridBagLayout();
         optionPane.setLayout(layout);
-        String [] styleName = {"Java","C/C++","Python","Haskell","Javascript"};
+        String [] styleName = {"Java","C/C++","Python","Javascript","Haskell"};
         JLabel label = new JLabel("Setting options");
         styleChoice = new JComboBox(styleName);
         String [] themeName = {"default","desert","molokai","GRB256","solarized_light","solarized_dark"};
@@ -101,11 +101,51 @@ public class RightPane extends JPanel{
         layout.setConstraints(lineCheckBox, constraints);
         optionPane.add(lineCheckBox);
 
+        final Image image ;
+        ImageIcon icon = new ImageIcon("cp.png");
+        image = icon.getImage();
+        buttonPane = new JPanel();
         buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
         buttonPane.add(buttonExit);
 
         JPanel panel = new JPanel();
-        JPanel panel2 = new JPanel();
+        JPanel panel2 = new JPanel(){
+            @Override
+            public void paint(Graphics g) {
+                super.paint(g);
+            }
+
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+
+                // it is common knowledge that children are painted after parent
+                Graphics2D tmp = (Graphics2D)g.create();
+                tmp.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                        RenderingHints.VALUE_ANTIALIAS_ON);
+                try {
+                    tmp.setColor(Color.MAGENTA);
+                    tmp.fillRect(0, 0, getWidth(), getHeight());
+                    tmp.drawImage(image,0,0,getWidth(),getHeight(),null);
+                    tmp.setColor(Color.BLUE);
+                    tmp.setFont(new Font("SansSerif",Font.ITALIC,20));
+                    FontMetrics fm = tmp.getFontMetrics();                   // get the statue of gd
+                    int stringWidth = fm.stringWidth("Copyright");
+                    int stringAscent = fm.getAscent();
+                    int xCoordinate = this.getWidth()/2 - stringWidth/2;
+                    int yCoordinate = this.getHeight()/2+stringAscent/2;
+                    tmp.drawString("Copyright",xCoordinate,yCoordinate-30);
+                    tmp.drawString("Three Mr.Zhang",xCoordinate,yCoordinate);
+                } finally {
+                    tmp.dispose();
+                }
+            }
+
+            @Override
+            protected void paintChildren(Graphics g) {
+                super.paintChildren(g);
+            }
+        };
         panel.setLayout(new GridLayout(2, 1));
         panel.add(optionPane);
         panel.add(panel2);
@@ -173,11 +213,15 @@ public class RightPane extends JPanel{
         else if(styleChoice1.equals("Haskell")){
             styleChoice.setSelectedItem("Haskell");
         }
+        else if(styleChoice1.equals("Javascript")){
+            styleChoice.setSelectedItem("Javascript");
+        }
         else if(styleChoice1.equals("Python")){
             styleChoice.setSelectedItem("Python");
         }
+
         else {
-            styleChoice.setSelectedItem("Javascript");
+
         }
     }
 }

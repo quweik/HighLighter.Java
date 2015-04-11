@@ -16,9 +16,7 @@ public class PanelTwo extends JPanel {
     private  JTextField textname = new JTextField(10);
     private  JLabel textlabel = new JLabel("Source code Please");
     private  JTextArea  textcode = new JTextArea();
-    private  JLabel convlabel = new JLabel("Dst converted code");
     private  JButton conv = new JButton("convert");
-    private  JTextArea convtext = new JTextArea();
     static  String style = RightPane.syname;
     static  String theme = RightPane.thename;
     static  boolean linechecked = RightPane.islinechecked;
@@ -28,30 +26,20 @@ public class PanelTwo extends JPanel {
 
         namelabel.setFont(new Font("Courier", Font.BOLD, 20));
         textlabel.setFont(new Font("Courier",Font.BOLD,20));    // make the size of the  font
-        convlabel.setFont(new Font("Courier",Font.BOLD,20));
         conv.setFont(new Font("Courier",Font.BOLD,20));
         textname.setText(null);
         textname.setFont(new Font("SansSerif", Font.ITALIC, 18));
-        textname.setForeground(new Color(82,39,123));
+        textname.setForeground(new Color(43,43,43));
         textcode.setText(null);
         textcode.setLineWrap(true);
         textcode.setWrapStyleWord(true);
         textcode.setFont(new Font("SansSerif", Font.ITALIC, 18));
-        textcode.setForeground(new Color(145,13,0));
-        convtext.setLineWrap(true);
-        convtext.setEditable(false);
-        convtext.setWrapStyleWord(true);
-        convtext.setFont(new Font("SansSerif",Font.ITALIC,18));
-        convtext.setForeground(new Color(22, 154, 218));
-
+        textcode.setForeground(new Color(43,43,43));
+        textcode.setBackground(new Color(230,230,230));
 
         JScrollPane scrollPaneSrc = new JScrollPane(textcode);
         scrollPaneSrc.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);  // make the bar
         scrollPaneSrc.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-
-        JScrollPane scrollPaneDst = new JScrollPane(convtext);
-        scrollPaneDst.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPaneDst.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         // set the tooltiptext
         textname.setToolTipText("name the file that you want to save the converted code");
@@ -70,13 +58,6 @@ public class PanelTwo extends JPanel {
         panel2.add(scrollPaneSrc);
         panel2.add(Box.createVerticalStrut(5));
 
-        JPanel panel3  = new JPanel();
-        panel3.setLayout(new BoxLayout(panel3,BoxLayout.Y_AXIS));
-        panel3.add(convlabel);
-        panel3.add(Box.createVerticalStrut(5));
-        panel3.add(scrollPaneDst);
-        panel3.add(Box.createVerticalStrut(5));
-
         JPanel pane4 = new JPanel();
         JPanel pane5 = new JPanel();
         pane5.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -85,9 +66,8 @@ public class PanelTwo extends JPanel {
         pane4.add(panel, BorderLayout.NORTH);       // pane4 to hold the panel and panel2
         pane4.add(panel2,BorderLayout.CENTER);
         pane4.add(pane5,BorderLayout.SOUTH);
-        this.setLayout(new GridLayout(2, 1, 10, 10));   // GridLayout
+        this.setLayout(new BorderLayout());
         this.add(pane4);
-        this.add(panel3);
         dealAction();
     }
 
@@ -104,9 +84,9 @@ public class PanelTwo extends JPanel {
                     outname = textname.getText();
                    int  i = outname.indexOf('.');
                     if(i ==-1){
-                        System.out.print("yes");
+                   //     System.out.print("yes");
                         outname = outname +".html";
-                        System.out.println(outname);
+                    //    System.out.println(outname);
                     }
                 }
                 if(textcode.getText().length()==0){
@@ -115,8 +95,6 @@ public class PanelTwo extends JPanel {
                             "Information",JOptionPane.INFORMATION_MESSAGE);
                     return;
                 }
-                convtext.setText(null);
-                convtext.setEditable(true);
                 String cmdline = "java -jar cli.jar ";
                 int i = outname.indexOf('.');
                 String sourceName = outname.substring(0,i+1);
@@ -151,20 +129,19 @@ public class PanelTwo extends JPanel {
                     //  System.out.println(cmdline);
                     Process proc = Runtime.getRuntime().exec(cmdline);
                     int exitVal = proc.waitFor();
-                    System.out.println(exitVal);
+                 //   System.out.println(exitVal);
 
                 } catch (Exception e1) {
                     System.exit(0);
                 }
                 Properties properties = System.getProperties();
                 String cmd = "cmd.exe /c start ";
-                System.out.println(cmd);
+             //   System.out.println(cmd);
                 cmd = cmd + properties.getProperty("user.dir");
-                System.out.println();
+               // System.out.println();
                 cmd = cmd + "\\" + outname;
-                System.out.println(cmd);
+              //  System.out.println(cmd);
                 String filePath = properties.getProperty("user.dir")+ "\\" + outname;
-                readHtml(filePath);
                 try {
                     Runtime.getRuntime().exec(cmd);
                 } catch (Exception e1) {
@@ -187,21 +164,4 @@ public class PanelTwo extends JPanel {
         }
           output.close();
       }
-
-    public void readHtml(String filePath) {
-        try{
-            File file = new File(filePath);
-            InputStreamReader  reader = new InputStreamReader(new FileInputStream(file),"GB2312");
-            BufferedReader in = new BufferedReader(reader);
-            String string = null;
-            while ( (string =in.readLine().toString()).length()!=0){
-                convtext.append(string);
-                convtext.append("\n");
-            }
-            in.close();
-        }
-        catch (Exception e){
-           e.printStackTrace();
-        }
-    }
 }
